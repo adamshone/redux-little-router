@@ -12,7 +12,13 @@ export const locationDidChange = ({
 }: LocationDidChangeArgs) => {
   // Extract the pathname so that we don't match against the basename.
   // This avoids requiring basename-hardcoded routes.
-  const { pathname } = location;
+  const { hash } = location;
+  let { pathname } = location;
+
+  // TM Hack to support the back button when the basename is set to #
+  if (pathname === '/' && hash.indexOf('#') === 0) {
+    pathname = hash.substring(1);
+  }
 
   return {
     type: LOCATION_CHANGED,
