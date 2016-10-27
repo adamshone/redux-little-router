@@ -18,6 +18,9 @@ export const locationDidChange = ({
   // TM Hack to support the back button when the basename is set to #
   if (pathname === '/' && hash.indexOf('#') === 0) {
     pathname = hash.substring(1);
+    location.pathname = pathname;
+    location.basename = '#';
+    location.hash = '';
   }
 
   return {

@@ -2625,6 +2625,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	  if (pathname === '/' && hash.indexOf('#') === 0) {
 	    pathname = hash.substring(1);
+	    location.pathname = pathname;
+	    location.basename = '#';
+	    location.hash = '';
 	  }
 	
 	  return {
