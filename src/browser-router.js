@@ -26,7 +26,15 @@ export default ({
     basename
   });
 
-  const { pathname, search } = getLocation();
+  const location = getLocation();
+  const { search, hash } = location;
+  let { pathname } = location;
+
+  // TM hack to handle # as the basename
+  if (pathname === '/' && basename.indexOf('#') === 0) {
+    pathname = hash.substring(1);
+  }
+
   const location = history
     .createLocation({ pathname, search });
 
