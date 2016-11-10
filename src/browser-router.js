@@ -26,9 +26,9 @@ export default ({
     basename
   });
 
-  const location = getLocation();
-  const { search, hash } = location;
-  let { pathname } = location;
+  const windowLocation = getLocation();
+  const { search, hash } = windowLocation;
+  let { pathname } = windowLocation;
 
   // TM hack to handle # as the basename
   if (pathname === '/' && basename.indexOf('#') === 0) {
